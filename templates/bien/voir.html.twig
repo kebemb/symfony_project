@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du bien{{ bien.nom }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('bien') }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Détails du bien : {{ bien.nom }}</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ bien.nom }} <i class="fa-solid fa-house"></i></h5>
+                <p class="card-text">
+                    {{ bien.description }}
+                    {{ bien.prix }}$ - disponible le {{ bien.dateDispo|date("d/m/Y") }}
+                </p>
+                <a href="{{ path('app_bien_lister') }}" class="btn btn-primary">Retour à la liste</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

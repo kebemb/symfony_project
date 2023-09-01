@@ -1,0 +1,36 @@
+{% extends '/admin/base_admin.html.twig' %}
+
+{% block title %}Hello AdminBienController!{% endblock %}
+
+
+{% block contenu %}
+
+    <table class="table table-primary table-striped-columns">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date de dispo</th>
+            <th scope="col">Ville située</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for bien in biens %}
+        <tr>
+            <td>{{ bien.nom }}</td>
+            <td>{{ bien.prix }}</td>
+            <td>{{ bien.description }}</td>
+            <td>{{ bien.dateDispo | date('d/m/y')}}</td>
+            <td>{{ bien.ville.nom }}</td>
+            <td>
+                <a class="btn btn-primary"  href="{{ path('app_admin_bien_modifier', {'id': bien.id}) }}">Modifier</a>
+                <a class="btn btn-danger" onclick="return confirm('Etes vous sur ?')" href="{{ path('app_admin_bien_supprimer', {'id': bien.id}) }}">Supprimer</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+<a href="{{ path('app_admin_bien_ajouter') }}" class="btn btn-primary">Ajouter un bien</a>
+{% endblock %}

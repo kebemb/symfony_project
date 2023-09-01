@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BienController!{% endblock %}
+
+{% block stylesheets  %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('bien') }}
+{% endblock %}
+
+{% block body %}
+    {# commentaire twig {{ un eco ...}} #}
+
+        <div class="row">
+            {% for bien in biens %}
+                <div class="col mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ bien.nom }}</h5>
+                            <p class="card-text">{{ bien.description }}</p>
+                            <a href="{{ path('app_bien_voir', {'id':bien.id}) }}" class="btn btn-primary">Voir le bien</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+       {#  <h1>{{ bien.nom }}</h1>
+    <p>{{ bien.prix }}</p>
+    <p>{{ bien.description }}</p>
+    <p>{{ bien.dateDispo|date("d/m/y")
+    <button type="button" class="btn btn-primary">Voir le bien</button>}}</p>#}
