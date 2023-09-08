@@ -24,6 +24,7 @@ Encore
     .addEntry('bien', './assets/bien.js')
     .addEntry('app_admin', './assets/app_admin.js')
 
+
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

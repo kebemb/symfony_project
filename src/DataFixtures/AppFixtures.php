@@ -2,15 +2,23 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\User;
 use Faker;
 use App\Entity\Bien;
 use App\Entity\FoodTruck;
 use App\Entity\Ville;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+
+    public function __construct(UserPasswordHasherInterface $userPasswordHasher)
+    {
+        $this->userPasswordHasher = $userPasswordHasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
         $faker = Faker\Factory::create();
@@ -34,6 +42,22 @@ class AppFixtures extends Fixture
         $bien->setVille($ville);
         $bien->setAvecJardin(true);
         $manager->persist($bien);
+
+        $user = new User();
+        $user->setNom('besse');
+        $user->setPrenom('seb');
+        $user->setEmail('sebes@gmail.com');
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, '123'));
+        $user->setRoles(['ROLE_ADMIN']);
+         $manager->persist($user);
+
+        $user = new User();
+        $user->setNom('peu');
+        $user->setPrenom('importe');
+        $user->setEmail('peut@gmail.com');
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, '456'));
+        $manager->persist($user);
 
         $manager->flush();
     }

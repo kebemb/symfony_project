@@ -17,8 +17,11 @@
                     {{ bien.description }}
                     {{ bien.prix }}$ - disponible le {{ bien.dateDispo|date("d/m/Y") }}
                 </p>
-                <a href="{{ path('app_bien_lister') }}" class="btn btn-primary">Retour à la liste</a>
+                <img src="{{ asset('images/uploads/biens/' ~ bien.photoPrincipal) }}" alt="">
             </div>
         </div>
+
+
+        <a href="{{ path('app_bien_lister') }}" class="btn btn-primary">Retour à la liste</a>
     </div>
 {% endblock %}

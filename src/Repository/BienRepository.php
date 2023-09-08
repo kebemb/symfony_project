@@ -21,20 +21,20 @@ class BienRepository extends ServiceEntityRepository
         parent::__construct($registry, Bien::class);
     }
 
-//    /**
-//     * @return Bien[] Returns an array of Bien objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('b.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Bien[] Returns an array of Bien objects
+    */
+    public function listeBienDispoApresDate(string $date): array
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.dateDispo >= :date')
+            ->setParameter('date', $date)
+            ->orderBy('b.nom')
+            //->setMaxResults()
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Bien
 //    {

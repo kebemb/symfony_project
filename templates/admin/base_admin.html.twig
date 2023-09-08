@@ -45,22 +45,37 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
+        {% if is_granted('ROLE_ADMIN') %}
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ path( "app_admin_bien_lister") }}">
+                    <i class="fa-solid fa-house-chimney-user"></i>
+                    <span>Gestion des Biens</span>
+                </a>
+            </li>
+        {% endif %}
+
+        {% if  is_granted('ROLE_MAIRIE') %}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ path( "app_admin_ville_lister") }}">
+                    <i class="fa-solid fa-city"></i>
+                    <span>Gestion des Villes</span>
+                </a>
+            </li>
+        {% endif %}
+        {% if is_granted('ROLE_CUISTOT') %}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ path( "app_admin_foodtruck_lister") }}">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span>Gestion des FoodTrucks</span>
+                </a>
+            </li>
+        {% endif %}
+
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path( "app_admin_bien_lister") }}">
-                <i class="fa-solid fa-house-chimney-user"></i>
-                <span>Gestion des Biens</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path( "app_admin_ville_lister") }}">
-                <i class="fa-solid fa-city"></i>
-                <span>Gestion des Villes</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ path( "app_admin_foodtruck_lister") }}">
-                <i class="fa-solid fa-truck-fast"></i>
-                <span>Gestion desFoodTrucks</span>
+            <a class="nav-link collapsed" href="{{ path( "app_logout") }}">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Deconnexion</span>
             </a>
         </li>}
 
